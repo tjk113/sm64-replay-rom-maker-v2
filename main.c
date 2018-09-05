@@ -20,12 +20,15 @@ int main () {
 	// Read the number of frames
 	printf("Writing metadata...\n");
 	
-	fseek(m64, 0x00C, SEEK_SET);
+	fseek(m64, 0x018, SEEK_SET);
 	fread(buffer, 1, 4, m64);
 	
-	// Write to ROM
+	// Write to ROM, but reverse endianness
 	fseek(rom, 0x7CC770, SEEK_SET);
-	fwrite(buffer, 1, 4, rom);
+	
+	for (int i = 3; i > -1; i --) {
+		fwrite(&buffer[i], 1, 1, rom);
+	}
 	
 	// Put M64 pointer at start of controller data
 	fseek(m64, 0x400, SEEK_SET);
