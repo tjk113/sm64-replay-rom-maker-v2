@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 int main () {
 	FILE *m64;
@@ -11,7 +12,7 @@ int main () {
 	printf("Opening files...\n");
 	
 	m64 = fopen("input.m64", "r");
-	rom = fopen("output.z64", "w");
+	rom = fopen("output.z64", "r+");
 	
 	if (m64 == NULL || rom == NULL)
 		return 1;
@@ -34,6 +35,9 @@ int main () {
 	
 	while (fread(buffer, 1, 4, m64))
 		fwrite(buffer, 1, 4, rom);
+	
+	// Clear the rest of the ROM
+	//ftruncate(fileno(rom), ftell(rom));
 	
 	// Close files
 	printf("Closing files...\n");
