@@ -40,7 +40,7 @@ int main () {
 		fwrite(buffer, 1, 4, rom);
 	
 	// Clear the rest of the ROM
-	//ftruncate(fileno(rom), ftell(rom));
+	ftruncate(fileno(rom), ftell(rom));
 	
 	// Close files
 	printf("Closing files...\n");
