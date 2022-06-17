@@ -8,3 +8,4 @@ You have two options for selecting an m64 to make into a ROM. You can either pla
 ```
 replay_rom_maker.exe my_tas.m64
 ```
+If you are compiling the executable from source, simply compile it on the command line with your C compiler of choice (`gcc main.c -o replay_rom_maker.exe`, for example).
