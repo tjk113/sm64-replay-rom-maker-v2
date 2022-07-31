@@ -15,17 +15,24 @@ int main(int argc, char* argv[]) {
 	// Bool to designate whether the argument on the command line is an m64 or an output ROM name
 	_Bool rom_name_only = 0;
 
-	// Check command line for m64 name, otherwise default to input.m64
 	if (argc > 1) {
-		// Check if the third-to-last char in the last element of the
-		// argv array is an 'm' (we're checking if it's an m64 or z64)
-		if (argv[1][strlen((const char*)argv[1]) - 3] == 'm') {
-			m64 = fopen(argv[1], "rb");
+		// '-h' flag to show usage
+		if (argv[1][0] == '-') {
+			printf("Usage:\n	replay_rom_maker.exe [your_movie.m64] [your_rom_name.z64 | -]");
+			return 0;
 		}
+		// Check command line for m64 name, otherwise default to input.m64
 		else {
-			printf("No m64 argument... using input.m64\n");
-			m64 = fopen("input.m64", "rb");
-			rom_name_only = 1;
+			// Check if the third-to-last char in the last element of the
+			// argv array is an 'm' (we're checking if it's an m64 or z64)
+			if (argv[1][strlen((const char*)argv[1]) - 3] == 'm') {
+				m64 = fopen(argv[1], "rb");
+			}
+			else {
+				printf("No m64 argument... using input.m64\n");
+				m64 = fopen("input.m64", "rb");
+				rom_name_only = 1;
+			}
 		}
 	}
 	else {
