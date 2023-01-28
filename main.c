@@ -47,7 +47,6 @@ int main(int argc, char* argv[]) {
 
 	// Check command line for output ROM name or '-' flag, otherwise default to output.z64
 	if (argc > 2) {
-		printf("%s", argv[2]);
 		if (argv[2][0] == '-') {
 			// safe to change argv[1] here after m64 already fopened its previous value?
 			argv[1][strlen((const char*)argv[1]) - 3] = 'z';
