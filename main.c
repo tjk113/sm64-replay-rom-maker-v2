@@ -5,7 +5,7 @@ int main(int argc, char* argv[]) {
 	FILE *m64;
 	FILE *base_rom;
 	FILE *output_rom;
-	
+
 	// 4 bytes is the size of the number of frames and also the size of each controller poll
 	unsigned char buffer[4];
 	// Address to start writing m64 data
@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
 	if (argc > 1) {
 		// '-h' flag to show usage
 		if (argv[1][0] == '-') {
-			printf("Usage:\n	replay_rom_maker.exe [your_movie.m64] [your_rom_name.z64 | -]");
+			printf("Usage:\n	replay_rom_maker.exe [your_movie.m64] [your_rom_name.z64 | -] [base_m64_replay_rom.z64]");
 			return 0;
 		}
 		// Check command line for m64 name, otherwise default to input.m64
@@ -84,6 +84,11 @@ int main(int argc, char* argv[]) {
 	else {
 		printf("Unable to read m64 file");
 		return 1;
+	}
+
+	if (argc > 3) {
+		strcpy(ver, argv[3]);
+		printf("Using %s as base rom\n", ver);
 	}
 
 	base_rom = fopen(ver, "rb+");
