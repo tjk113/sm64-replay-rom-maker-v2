@@ -3,7 +3,7 @@ Uses Eddio0141's SM64 Replay Romhack to turn an m64 movie file into a z64 ROM th
 
 ## Usage
 ```
-replay_rom_maker.exe [your_movie.m64] [your_rom_name.z64 | -]
+replay_rom_maker.exe [your_movie.m64] [your_rom_name.z64 | -] [base_m64_replay_rom.z64]
 ```
 Before you can create any Replay ROMs, you must apply the .ips patches to unmodified Super Mario 64 U and J ROMs respectively, and place them into the same folder as the `replay_rom_maker.exe` executable. Make sure the ROM names match their respective patch names. Patching can be done with [Floating IPS (flips)](https://github.com/Alcaro/Flips). You are free to delete the .ips patch files after doing so.
 
